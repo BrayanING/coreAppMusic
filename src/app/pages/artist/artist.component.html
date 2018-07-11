@@ -1,0 +1,98 @@
+<div class="row">
+  <form class="col s12 m12 l12">
+    <div class="card row z-depth-2">
+      <div class="input-field col s12">
+        <input #input (keyup)="collectionArtist(input.value)" id="search" type="search" placeholder="Buscar artista" required>
+        <i class="material-icons prefix">search</i>
+        <label for="search">
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="col s12 m12 l12">
+    <div class="card z-depth-3">
+      <table class="responsive-table highlight centered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Biografía</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          </tr>
+          <tr *ngFor="let artist of artists">
+            <td>{{artist.id}}</td>
+            <td>{{artist.name}}</td>
+            <td>{{artist.bio}}</td>
+            <td>
+              <a href="#modalEdit" class="btn-floating modal-trigger" (click)="showArtist(artist)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="btn-floating" (click)="deleteArtist(artist.id)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="modalAdd" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Agregar artista</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formAdd="ngForm" (ngSubmit)="registerArtist(formAdd)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input ngModel name="name" id="name" type="text" class="validate" required>
+            <label for="name">Nombre</label>
+          </div>
+          <div class="input-field col s12 l12">
+            <textarea ngModel name="bio" id="bio" class="materialize-textarea" required></textarea>
+            <label for="bio">Biografía</label>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="modalEdit" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Editar género</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formEddit="ngForm" (ngSubmit)="changeGenre(formEddit)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="editArtist.name" name="nameEdit" id="nameEdit" type="text" class="validate">
+            <label for="nameEdit" class="active">Nombre</label>
+          </div>
+          <div class="input-field col s12 l12">
+            <textarea [(ngModel)]="editArtist.bio" name="bioEddit" id="bioEddit" class="materialize-textarea"></textarea>
+            <label for="bioEddit">Biografía</label>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a href="#modalAdd" class="btn-floating btn-large modal-trigger" (click)="openModal">
+    <i class="large material-icons">add</i>
+  </a>
+</div>

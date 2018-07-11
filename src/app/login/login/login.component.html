@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col s12 m3 l4"></div>
+  <div class="col s12 m6 l4" id="login">
+    <div class="col s12">
+      <div class="card">
+        <div id="modal-title">
+          <h4>Login</h4>
+        </div>
+        <div class="card-content">
+          <form ngNativeValidate #f="ngForm" (ngSubmit)="loginUser(f)" autocomplete="off">
+            <div class="row">
+              <div class="input-field col s12 l12">
+                <input ngModel name="email" id="email" id="email" type="email" class="validate" required>
+                <label data-error="Ingrese un correo valido" for="email">Email</label>
+              </div>
+              <div class="input-field col s12 l12">
+                <input ngModel name="password" id="password" id="password" type="password" class="validate" required>
+                <label for="password">Contraseña</label>
+              </div>
+            </div>
+            <button class="btn" type="submit" name="action">Ingresar
+            </button>
+          </form>
+        </div>
+        <div class="card-action">
+          <span>No tienes cuenta?</span>
+          <a routerLink="/register">crear cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m3 l4"></div>
+</div>

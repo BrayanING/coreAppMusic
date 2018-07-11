@@ -1,0 +1,29 @@
+<nav id="menu-var" class="z-depth-2">
+  <div class="nav-wrapper">
+    <a href="#" materialize="sideNav" data-activates="menu" class="button-collapse show-on-large">
+      <i class="material-icons">menu</i>
+    </a>
+  </div>
+</nav>
+<ul id="menu" class="side-nav fixed z-depth-1">
+  <li class="center" id="img-user">
+    <img class="responsive-img circle" src="assets/img/user_found.png">
+  </li>
+  <li class="center" id="info-user">
+    <span class="center"> {{user.name}}</span>
+  </li>
+  <li class="center">
+    <span class=""> {{user.email}} </span>
+  </li>
+  <li>
+    <div class="divider"></div>
+  </li>
+  <li *ngFor="let menu of _sidenav.menu" id="menu-item">
+    <a class="waves-effect waves-light" routerLinkActive="active"  [routerLink]="[menu.url]">
+      <i class="material-icons left" >{{menu.icon}}</i>{{menu.titulo}}</a>
+  </li>
+<li id="menu-item">
+  <a class="waves-effect waves-light" (click)="_userService.logout()">
+<i class="material-icons left">power_settings_new</i>Cerrar sesión</a>
+</li>
+</ul>

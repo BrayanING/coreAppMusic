@@ -1,0 +1,109 @@
+<div class="row">
+  <form class="col s12 m12 l12">
+    <div class="card row z-depth-2">
+      <div class="input-field col s12">
+        <input #input (keyup)="collectionUser(input.value)" id="search" type="search" placeholder="Buscar usuario" required>
+        <i class="material-icons prefix">search</i>
+        <label for="search">
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="col s12 m12 l12">
+    <div class="card z-depth-3">
+      <table class="responsive-table highlight centered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          </tr>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>
+              <a href="#modalEdit" class="btn-floating modal-trigger" (click)="showUser(user)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="btn-floating" (click)="deleteUser(user.id)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="modalAdd" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Agregar usuario</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registerUser()" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l6">
+            <input formControlName="name" id="name" type="text" class="validate" required>
+            <label for="name">Usuario</label>
+          </div>
+          <div class="input-field col s12 l6">
+            <input formControlName="email" id="email" id="email" type="email" class="validate" required>
+            <label data-error="Ingrese un correo valido" for="email">Email</label>
+          </div>
+          <div class="input-field col s12 l6">
+            <input formControlName="password" id="password" id="password" type="password" class="validate" required>
+            <label for="password">Contraseña</label>
+          </div>
+          <div class="input-field col s12 l6">
+            <input formControlName="confirmPassword" id="confirmPassword" id="confirmPassword" type="password" class="validate" required>
+            <label for="confirmPassword">Confirmar contraseña</label>
+          </div>
+          <div *ngIf="forma.errors">
+            <p class="red-text">Las contraseñas deben de ser iguales</p>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="modalEdit" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Editar usuario</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #f="ngForm" (ngSubmit)="changeUser(f)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="editUser.name" name="nameEdit" id="nameEdit" type="text" class="validate">
+            <label for="nameEdit" class="active">Usuario</label>
+          </div>
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="editUser.email" name="emailEdit" id="emailEdit" type="email" class="validate">
+            <label data-error="Ingrese un correo valido" for="emailEdit">Email</label>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a href="#modalAdd" class="btn-floating btn-large modal-trigger" (click)="openModal">
+    <i class="large material-icons">add</i>
+  </a>
+</div>

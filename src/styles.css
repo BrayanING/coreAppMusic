@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Muli',
+    sans-serif;
+}
+body {
+    background: #EEEEEE;
+}
+header,
+main,
+footer {
+  padding-left: 180px;
+  padding-top: 20px;
+  padding-right: 8px;
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+    padding-top: 0;
+  }
+  .button-collapse {
+    display: inherit;
+  }
+}
+
+.side-nav{
+    width: 170px;
+}

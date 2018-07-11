@@ -1,0 +1,48 @@
+.row .nav-wrapper {
+  background: #fff;
+}
+
+.row .nav-wrapper i {
+  color: #000;
+}
+
+.btn-floating {
+  background-color: #00bcd4 !important;
+}
+
+.btn-floating:focus {
+  background-color: #0097a7 !important;
+}
+
+.btn-floating:hover {
+  background-color: #4dd0e1 !important;
+}
+
+.btn {
+  background-color: #00bcd4 !important;
+}
+
+.btn:focus {
+  background-color: #0097a7 !important;
+}
+
+.btn:hover {
+  background-color: #4dd0e1 !important;
+}
+
+#modal-title {
+  background-color: #0097a7 !important;
+  color: #fff !important;
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+input-field input:focus+label {
+  color: #00bcd4 !important;
+}
+
+.row .input-field input:focus {
+  border-bottom: 1px solid #00bcd4 !important;
+  box-shadow: 0 1px 0 0 #00bcd4 !important
+}

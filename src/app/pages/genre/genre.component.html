@@ -1,0 +1,98 @@
+<div class="row">
+  <form class="col s12 m12 l12">
+    <div class="card row z-depth-2">
+      <div class="input-field col s12">
+        <input #input (keyup)="collectionGenre(input.value)" id="search" type="search" placeholder="Buscar género" required>
+        <i class="material-icons prefix">search</i>
+        <label for="search">
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="col s12 m12 l12">
+    <div class="card z-depth-3">
+      <table class="responsive-table highlight centered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          </tr>
+          <tr *ngFor="let genre of genres">
+            <td>{{genre.id}}</td>
+            <td>{{genre.name}}</td>
+            <td>{{genre.description}}</td>
+            <td>
+              <a href="#modalEdit" class="btn-floating modal-trigger" (click)="showUser(genre)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="btn-floating" (click)="deleteGenre(genre.id)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="modalAdd" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Agregar género</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formAdd="ngForm" (ngSubmit)="registerGenre(formAdd)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input ngModel name="name" id="name" type="text" class="validate" required>
+            <label for="name">Nombre</label>
+          </div>
+          <div class="input-field col s12 l12">
+            <textarea ngModel name="description" id="description" class="materialize-textarea" required></textarea>
+            <label for="description">Descripcións</label>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="modalEdit" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Editar género</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formEddit="ngForm" (ngSubmit)="changeGenre(formEddit)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="editGenre.name" name="nameEdit" id="nameEdit" type="text" class="validate">
+            <label for="nameEdit" class="active">Nombre</label>
+          </div>
+          <div class="input-field col s12 l12">
+            <textarea [(ngModel)]="editGenre.description" name="descriptionEddit" id="descriptionEddit" class="materialize-textarea"></textarea>
+            <label for="description">Descripcións</label>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a href="#modalAdd" class="btn-floating btn-large modal-trigger" (click)="openModal">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
