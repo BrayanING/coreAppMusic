@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 
-// Importando Jquery
+// Import Jquery
 declare var $: any;
 declare var Materialize: any;
 
