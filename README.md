@@ -1,5 +1,5 @@
-```APP MUSIC ARTIST CRUD ```
-# npm install
+# APP MUSIC ARTIST CRUD
+```npm install```
 
 # CoreApp
 
