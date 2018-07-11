@@ -46,6 +46,7 @@ export class ArtistService {
       return resp.artists;
     });
   }
+
   collectionArtist(name: string) {
     const url = URL_SERVICE + '/artist/collection/' + name;
     return this.http.get(url).map((resp: any) => {
