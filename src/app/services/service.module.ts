@@ -16,7 +16,7 @@ import {
   providers: [
     UserService,
     GenreService,
-    ArtistService, 
+    ArtistService,
     SidenavService,
     LoginGuardGuard,
     ComplementsService,
