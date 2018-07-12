@@ -6,7 +6,6 @@ import {RouterModule} from '@angular/router';
 // Importaciones de Materialize
 import 'materialize-css';
 import {MaterializeModule} from 'angular2-materialize';
-
 // Importando las rutas
 import {APP_ROUTING} from './app.routes';
 

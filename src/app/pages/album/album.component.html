@@ -59,7 +59,7 @@
             <label for="name">Nombre</label>
           </div>
           <div class="input-field col s12">
-            <select [(ngModel)]="addAlbum.artistId" name="artist" materialize="material_select" required>
+            <select id="artist" [(ngModel)]="addAlbum.artistId" name="artist" materialize="material_select" [materializeSelectOptions]="artists">
               <option value="" disabled selected>Seleccione artista</option>
               <option *ngFor="let artist of artists" [value]="artist.id">{{artist.name}}</option>
             </select>
@@ -69,7 +69,7 @@
             <label for="name">Fecha publicación</label>
           </div>
           <div class="input-field col s12">
-            <select [(ngModel)]="addAlbum.genreId" name="genre" materialize="material_select" required>
+            <select [(ngModel)]="addAlbum.genreId" name="genre" materialize="material_select" [materializeSelectOptions]="genres" required>
               <option value="" disabled selected>Seleccione género</option>
               <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
             </select>
@@ -95,7 +95,8 @@
             <label for="name">Nombre</label>
           </div>
           <div class="input-field col s12">
-            <select [(ngModel)]="editAlbum.artistId" name="artist" materialize="material_select" required>
+            <select [(ngModel)]="editAlbum.artistId" name="artist" materialize="material_select" [materializeSelectOptions]="artists"
+              required>
               <option value="" disabled selected>Seleccione artista</option>
               <option *ngFor="let artist of artists" [value]="artist.id">{{artist.name}}</option>
             </select>
@@ -105,7 +106,8 @@
             <label for="name">Fecha publicación</label>
           </div>
           <div class="input-field col s12">
-            <select [(ngModel)]="editAlbum.genreId" name="genre" materialize="material_select" required>
+            <select [(ngModel)]="editAlbum.genreId" name="genre" materialize="material_select" [materializeSelectOptions]="genres"
+              required>
               <option value="" disabled selected>Seleccione género</option>
               <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
             </select>

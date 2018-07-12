@@ -1,16 +1,17 @@
 import { Component, OnInit, EventEmitter} from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import * as moment from 'moment';
-// Import Jquery
-declare var $: any;
-declare var Materialize: any;
+
 
 // Importando sweetalert
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
+import * as moment from 'moment';
 
 // Importando librerias de materialize
 import { MaterializeAction } from 'angular2-materialize';
+import { MaterializeDirective } from 'angular2-materialize';
+import * as Materialize from 'angular2-materialize';
+
 import { GenreService, ArtistService, ComplementsService, AlbumService } from '../../services/service.index';
 import { User } from '../../models/user.models';
 import { Artist } from '../../models/artist.models';
@@ -28,7 +29,6 @@ export class AlbumComponent implements OnInit {
   modalActions = new EventEmitter<string | MaterializeAction>();
 
   // Variables
-  moment: moment.Moment = moment('someDate');
   forma: FormGroup;
   swal: SweetAlert = _swal as any;
   albums: any[] = [];
@@ -46,11 +46,11 @@ export class AlbumComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.clearAlbumt();
-    this.loadStorage();
     this.listAlbum();
     this.listArtist();
     this.listGenre();
+    this.clearAlbumt();
+    this.loadStorage();
   }
 
   openModal() {
@@ -89,8 +89,7 @@ export class AlbumComponent implements OnInit {
   }
 
   showAlbum(album: any) {
-    const dateFormat = moment(album.dateReleased)
-      .format('DD/MM/YYYY');
+    const dateFormat = moment(album.dateReleased).format('L');
     album.dateReleased = dateFormat;
     this.editAlbum = new Album(
       album.id,
@@ -114,14 +113,14 @@ export class AlbumComponent implements OnInit {
   listAlbum() {
     this._albumService.listAlbum().subscribe(albums => {
       this.albums = albums;
+      return albums;
     });
   }
 
   listArtist() {
-    this._artistService.listArtist().subscribe(artists => {
-      this.artists = artists;
-    });
+    this._artistService.listArtist().subscribe(artists => this.artists = artists);
   }
+
   listGenre() {
     this._genreService.listGenre().subscribe(genres => {
       this.genres = genres;
