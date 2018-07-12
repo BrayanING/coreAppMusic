@@ -68,11 +68,11 @@
 </div>
 <div id="modalEdit" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
   <div class="col s12" id="modal-title">
-    <h4>Editar género</h4>
+    <h4>Editar artista</h4>
   </div>
   <div class="modal-content">
     <div class="row">
-      <form ngNativeValidate #formEddit="ngForm" (ngSubmit)="changeGenre(formEddit)" class="col s12" autocomplete="off">
+      <form ngNativeValidate #formEddit="ngForm" (ngSubmit)="changeArtist(formEddit)" class="col s12" autocomplete="off">
         <div class="row">
           <div class="input-field col s12 l12">
             <input [(ngModel)]="editArtist.name" name="nameEdit" id="nameEdit" type="text" class="validate">

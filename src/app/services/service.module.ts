@@ -6,8 +6,9 @@ import {
   UserService,
   GenreService,
   ArtistService,
-  SidenavService,
+  AlbumService,
   LoginGuardGuard,
+  SidenavService,
   ComplementsService,
 } from './service.index';
 
@@ -17,8 +18,9 @@ import {
     UserService,
     GenreService,
     ArtistService,
-    SidenavService,
+    AlbumService,
     LoginGuardGuard,
+    SidenavService,
     ComplementsService,
   ],
   declarations: [],

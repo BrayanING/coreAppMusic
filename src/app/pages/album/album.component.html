@@ -1,3 +1,126 @@
-<p>
-  album works!
-</p>
+<div class="row">
+  <form class="col s12 m12 l12">
+    <div class="card row z-depth-2">
+      <div class="input-field col s12">
+        <input #input (keyup)="collectionAlbum(input.value)" id="search" type="search" placeholder="Buscar album" required>
+        <i class="material-icons prefix">search</i>
+        <label for="search">
+        </label>
+      </div>
+    </div>
+  </form>
+  <div class="col s12 m12 l12">
+    <div class="card z-depth-3">
+      <table class="responsive-table highlight centered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Artista</th>
+            <th>Album</th>
+            <th>Fecha publicación</th>
+            <th>Género</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          </tr>
+          <tr *ngFor="let album of albums">
+            <td>{{album.id}}</td>
+            <td>{{album.Artist.name}}</td>
+            <td>{{album.name}}</td>
+            <td>{{album.dateReleased | date:"MM/dd/yyyy"}}</td>
+            <td>{{album.Genre.name}}</td>
+            <td>
+              <a href="#modalEdit" class="btn-floating modal-trigger" (click)="showAlbum(album)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="btn-floating" (click)="deleteAlbum(album.id)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="modalAdd" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Agregar album</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formAdd="ngForm" (ngSubmit)="registerAlbum(formAdd)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="addAlbum.name" name="name" type="text" class="validate" required>
+            <label for="name">Nombre</label>
+          </div>
+          <div class="input-field col s12">
+            <select [(ngModel)]="addAlbum.artistId" name="artist" materialize="material_select" required>
+              <option value="" disabled selected>Seleccione artista</option>
+              <option *ngFor="let artist of artists" [value]="artist.id">{{artist.name}}</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <input [(ngModel)]="addAlbum.dateReleased" name="dateReleased" id="dateReleased" materialize="pickadate" type="text" [materializeParams]="[{ format: 'mm/dd/yyyy', closeOnSelect: true }]">
+            <label for="name">Fecha publicación</label>
+          </div>
+          <div class="input-field col s12">
+            <select [(ngModel)]="addAlbum.genreId" name="genre" materialize="material_select" required>
+              <option value="" disabled selected>Seleccione género</option>
+              <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="modalEdit" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <div class="col s12" id="modal-title">
+    <h4>Editar género</h4>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <form ngNativeValidate #formEddit="ngForm" (ngSubmit)="changeAlbum(formEddit)" class="col s12" autocomplete="off">
+        <div class="row">
+          <div class="input-field col s12 l12">
+            <input [(ngModel)]="editAlbum.name" name="name" type="text" class="validate" required>
+            <label for="name">Nombre</label>
+          </div>
+          <div class="input-field col s12">
+            <select [(ngModel)]="editAlbum.artistId" name="artist" materialize="material_select" required>
+              <option value="" disabled selected>Seleccione artista</option>
+              <option *ngFor="let artist of artists" [value]="artist.id">{{artist.name}}</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <input [(ngModel)]="editAlbum.dateReleased" name="dateReleased" id="dateReleased" materialize="pickadate" type="text" [materializeParams]="[{ format: 'mm/dd/yyyy', closeOnSelect: true }]">
+            <label for="name">Fecha publicación</label>
+          </div>
+          <div class="input-field col s12">
+            <select [(ngModel)]="editAlbum.genreId" name="genre" materialize="material_select" required>
+              <option value="" disabled selected>Seleccione género</option>
+              <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" type="submit" name="action">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-action-btn">
+  <a href="#modalAdd" class="btn-floating btn-large modal-trigger">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
