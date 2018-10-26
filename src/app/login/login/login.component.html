@@ -7,14 +7,14 @@
           <h4>Login</h4>
         </div>
         <div class="card-content">
-          <form ngNativeValidate #f="ngForm" (ngSubmit)="loginUser(f)" autocomplete="off">
+          <form ngNativeValidate [formGroup]="forma" (ngSubmit)="loginUser()" autocomplete="off">
             <div class="row">
               <div class="input-field col s12 l12">
-                <input ngModel name="email" id="email" id="email" type="email" class="validate" required>
+                <input formControlName="email" id="email" id="email" type="email" class="validate" required>
                 <label data-error="Ingrese un correo valido" for="email">Email</label>
               </div>
               <div class="input-field col s12 l12">
-                <input ngModel name="password" id="password" id="password" type="password" class="validate" required>
+                <input formControlName="password" id="password" id="password" type="password" class="validate" required>
                 <label for="password">Contraseña</label>
               </div>
             </div>

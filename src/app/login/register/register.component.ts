@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   forma: FormGroup;
   swal: SweetAlert = _swal as any;
   users: User[] = [];
+  
   constructor(public _userService: UserService, public router: Router) {}
 
   ngOnInit() {

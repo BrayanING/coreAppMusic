@@ -1,5 +1,5 @@
 import {Component, OnInit, EventEmitter} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {NgForm, FormGroup, FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 // Importando sweetalert
@@ -14,28 +14,39 @@ import {User} from '../../models/user.models';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   // Instanciando modal
   modalActions = new EventEmitter<string | MaterializeAction>();
 
   // Variables
+  // Variables
+  forma: FormGroup;
   swal: SweetAlert = _swal as any;
   users: User[] = [];
-  constructor(public router: Router, public _userService: UserService) {}
+  error: boolean;
+  constructor(public router: Router, public _userService: UserService) {
+    this.error = false;
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.forma = new FormGroup(
+      {
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        password: new FormControl(null, Validators.required)
+      });
+  }
 
-  loginUser(forma: NgForm) {
-    if (forma.invalid) {
+  loginUser() {
+    if (this.forma.invalid) {
       return;
     }
     const user = new User(
       null,
       null,
-      forma.value.email,
-      forma.value.password,
+      this.forma.value.email,
+      this.forma.value.password,
       null,
       null
     );

@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Router} from '@angular/router';
 // Importaciones de Materialize
 import 'materialize-css';
 import {MaterializeModule} from 'angular2-materialize';
@@ -34,5 +34,7 @@ import {RegisterComponent} from './login/register/register.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [RouterModule],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {}
